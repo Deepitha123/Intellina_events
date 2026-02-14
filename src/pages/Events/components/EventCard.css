@@ -1,0 +1,212 @@
+/* WRAPPER */
+.card-wrapper {
+  position: relative;
+  width: 313px;
+  height: 462px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .card-wrapper {
+    transform: scale(0.85);
+    margin: -35px auto;
+  }
+
+  .card-content h3 {
+    font-size: 20px;
+  }
+
+  .card-content p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .card-wrapper {
+    transform: scale(0.75);
+    margin: -60px auto;
+  }
+}
+
+/* CARD */
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  background: #0d0d0d;
+  /* The extensive clip path */
+  clip-path: path("M1 443.824V92.4971C1 87.9401 2.79117 83.5658 5.98718 80.3176L78.9268 6.18619C82.1912 2.86844 86.6508 1 91.3052 1H290.247C299.838 1 307.612 8.77488 307.612 18.3657V415.334C307.612 424.925 299.838 432.699 290.247 432.699H165.34C161.033 432.699 156.879 434.3 153.686 437.191L132.134 456.699C128.941 459.589 124.787 461.19 120.48 461.19H18.3657C8.77487 461.19 1 453.415 1 443.824Z");
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  /* added for UX */
+}
+
+/* MAIN IMAGE */
+.main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* OVERLAY */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.9) 40%,
+      rgba(0, 0, 0, 0.4) 65%,
+      rgba(10, 10, 10, 0) 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* CONTENT */
+.card-content {
+  position: absolute;
+  bottom: 18px;
+  left: 22px;
+  right: 22px;
+  color: #fff;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  /* Let clicks pass to btn or card */
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: 900;
+  /* Very bold */
+  transition: color 0.4s ease;
+}
+
+.card-wrapper:hover .card-content h3 {
+  color: #ff2b2b;
+}
+
+.card-content p {
+  margin: 6px 0 18px;
+  font-size: 14px;
+  color: #dcdcdc;
+}
+
+/* PRIZE */
+.prize {
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.prize span {
+  color: #ff2b2b;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* ACTION BUTTONS */
+.addbtn {
+  position: absolute;
+  right: 12px;
+  bottom: 25%;
+  transition: all 0.4s ease;
+  z-index: 4;
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: center;
+}
+
+.addbtnhover {
+  position: absolute;
+  right: 13px;
+  bottom: 25%;
+  transform: scale(0);
+  /* Start scaled down from middle */
+  opacity: 0;
+  z-index: 4;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  transform-origin: center;
+}
+
+/* On Card Hover: Hide Plus, Show View Details */
+.card-wrapper:hover .addbtn {
+  opacity: 0;
+  transform: scale(0);
+  /* Scale down to middle */
+}
+
+.card-wrapper:hover .addbtnhover {
+  transform: scale(1);
+  /* Scale up from middle */
+  opacity: 1;
+}
+
+/* HOVER IMAGES (BEHIND CARD) */
+.notch-img {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.notch-img.top-left {
+  top: 8px;
+  left: 4px;
+  width: 80px;
+  transform: translate(20px, 20px);
+}
+
+.notch-img.bottom-right {
+  bottom: 8px;
+  right: 28px;
+  width: 150px;
+  transform: translate(-20px, -20px);
+}
+
+/* HOVER EFFECTS */
+.card-wrapper:hover .card {
+  transform: none;
+  /* Reset transform if any */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+}
+
+.card-wrapper:hover .main-img {
+  transform: scale(1.06);
+}
+
+.card-wrapper:hover .notch-img {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* SVG BORDER */
+.card-border-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.card-border-svg path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.4s ease;
+}
+
+.card-wrapper:hover .card-border-svg path {
+  stroke: #ff2b2b;
+  stroke-width: 2px;
+}

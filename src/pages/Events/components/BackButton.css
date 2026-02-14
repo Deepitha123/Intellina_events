@@ -1,0 +1,249 @@
+/* ============================================================
+   ULTRA GLOWY GLASSMORPHISM BACK BUTTON
+   ============================================================ */
+
+.back-button-ultra {
+    position: fixed;
+    /* Change from absolute to fixed for the listing pages */
+    top: 100px;
+    left: 24px;
+    /* Change from right to left as requested */
+    z-index: 50;
+
+    background: rgba(220, 38, 38, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid rgba(220, 38, 38, 0.4);
+
+    padding: 12px 35px;
+    border-radius: 60px;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    box-shadow:
+        0 0 20px rgba(220, 38, 38, 0.3),
+        0 0 40px rgba(220, 38, 38, 0.15),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(220, 38, 38, 0.1);
+}
+
+/* Outer glow rings */
+.glow-ring {
+    position: absolute;
+    inset: -10px;
+    border: 2px solid rgba(220, 38, 38, 0.2);
+    border-radius: 70px;
+    animation: pulse-ring 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.glow-ring:nth-child(2) {
+    inset: -20px;
+    border-radius: 80px;
+    animation-delay: 0.3s;
+}
+
+.glow-ring:nth-child(3) {
+    inset: -30px;
+    border-radius: 90px;
+    animation-delay: 0.6s;
+}
+
+@keyframes pulse-ring {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+/* Hover state */
+.back-button-ultra:hover {
+    background: rgba(220, 38, 38, 0.25);
+    border-color: rgba(220, 38, 38, 0.8);
+    transform: translateX(10px) scale(1.05);
+    /* Slide RIGHT because it's on the left now */
+    box-shadow:
+        0 0 40px rgba(220, 38, 38, 0.7),
+        0 0 80px rgba(220, 38, 38, 0.4),
+        0 0 120px rgba(220, 38, 38, 0.2),
+        0 12px 48px rgba(0, 0, 0, 0.5),
+        inset 0 0 40px rgba(220, 38, 38, 0.2);
+}
+
+.back-button-ultra:hover .glow-ring {
+    border-color: rgba(220, 38, 38, 0.6);
+    animation: pulse-ring-hover 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-ring-hover {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Animated gradient overlay (Rotating) */
+.back-button-ultra::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg,
+            transparent,
+            rgba(220, 38, 38, 0.3),
+            transparent 30%);
+    animation: rotate-btn-gradient 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.back-button-ultra:hover::before {
+    opacity: 1;
+}
+
+@keyframes rotate-btn-gradient {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Shimmer sweep effect */
+.back-button-ultra::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.back-button-ultra:hover::after {
+    left: 100%;
+}
+
+.arrow-icon {
+    font-size: 1.4rem;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.back-button-ultra:hover .arrow-icon {
+    transform: translateX(-5px);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ff1a1a;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(255, 26, 26, 0.8);
+    z-index: 1;
+}
+
+.back-button-ultra:hover .particle {
+    animation: float-particle-btn 2s ease-in-out infinite;
+}
+
+@keyframes float-particle-btn {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(1);
+    }
+}
+
+/* Ripple effect */
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    animation: ripple-btn 0.6s ease-out forwards;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes ripple-btn {
+    to {
+        transform: translate(-50%, -50%) scale(15);
+        opacity: 0;
+    }
+}
+
+/* Responsive adjustments for the back button */
+@media (max-width: 768px) {
+    .back-button-ultra {
+        top: 65px;
+        left: 15px;
+        padding: 10px 25px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Hide back button when a modal/overlay is active */
+body.modal-active .back-button-ultra {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateX(-20px);
+}

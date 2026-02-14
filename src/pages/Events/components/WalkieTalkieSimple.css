@@ -1,0 +1,218 @@
+/* Walkie-Talkie Simple Component Styles */
+
+.walkie-talkie-simple {
+    position: absolute;
+    right: 100px;
+    bottom: 30%;
+    /* y: 70% from top = 30% from bottom */
+    width: 60px;
+    height: 100px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform 0.3s ease, filter 0.3s ease, brightness 0.3s ease;
+    z-index: 100;
+}
+
+/* Hover state - Standardized */
+.walkie-talkie-simple.hovered:not(.used) {
+    transform: scale(1.08);
+    filter: brightness(1.1) drop-shadow(0 8px 20px rgba(74, 144, 226, 0.6)) drop-shadow(0 0 30px rgba(109, 213, 237, 0.5));
+    cursor: pointer;
+}
+
+/* Active state - Transmitting */
+.walkie-talkie-simple.active {
+    animation: walkieShake 0.1s infinite;
+    filter: drop-shadow(0 8px 20px rgba(255, 0, 0, 0.6)) drop-shadow(0 0 30px rgba(255, 165, 0, 0.5));
+}
+
+/* Used/Disabled state */
+.walkie-talkie-simple.used {
+    opacity: 0.5;
+    filter: grayscale(50%);
+}
+
+/* Default shadow */
+.walkie-talkie-simple:not(.active):not(.hovered) {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Shake animation during transmission */
+@keyframes walkieShake {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateX(-1px) rotate(-0.5deg);
+    }
+
+    75% {
+        transform: translateX(1px) rotate(0.5deg);
+    }
+}
+
+/* Antenna animation */
+.walkie-talkie-simple.active .antenna {
+    animation: antennaGlow 0.5s ease-in-out infinite;
+}
+
+@keyframes antennaGlow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Indicator light pulsing */
+.walkie-talkie-simple.active .indicator-light {
+    animation: redPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes redPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
+
+/* Tooltip styling */
+.walkie-tooltip {
+    position: absolute;
+    bottom: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFA500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: tooltipBounce 2s ease-in-out infinite;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+}
+
+.walkie-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(0, 0, 0, 0.8);
+}
+
+@keyframes tooltipBounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(5px);
+    }
+}
+
+/* Voice message display */
+.voice-message {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 0, 0, 0.9);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    pointer-events: none;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+    animation: voiceMessagePulse 0.8s ease-in-out infinite;
+}
+
+.voice-message::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(255, 0, 0, 0.9);
+}
+
+@keyframes voiceMessagePulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: translateX(-50%) scale(1.02);
+    }
+}
+
+/* SVG specific styles */
+.walkie-talkie-simple svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.walkie-talkie-simple.active svg {
+    filter: drop-shadow(0 4px 8px rgba(255, 0, 0, 0.3));
+}
+
+/* Hint state - Pulse after failed waffle attempts */
+.walkie-talkie-simple.hint {
+    animation: hintPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: scale(1.0);
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+    }
+
+    50% {
+        opacity: 1.0;
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 50px rgba(255, 215, 0, 0.6));
+    }
+}
+
+/* Disable text selection and image dragging */
+.walkie-talkie-simple * {
+    user-select: none;
+    -webkit-user-drag: none;
+}

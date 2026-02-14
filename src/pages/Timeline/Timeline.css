@@ -1,0 +1,124 @@
+.page-timeline .fog-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png') repeat-x;
+  background-size: 200% auto;
+  opacity: 0.3;
+  animation: fogMove 40s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+.page-timeline .smoke-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png') repeat-x;
+  background-size: 200% auto;
+  opacity: 0.2;
+  animation: fogMove 60s linear infinite reverse;
+  pointer-events: none;
+  z-index: 1;
+  filter: sepia(100%) saturate(1000%) hue-rotate(300deg) contrast(1.2) blur(1px);
+  mix-blend-mode: color-dodge;
+}
+
+@keyframes fogMove {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Ken Burns Animation */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  50% {
+    transform: scale(1.1) translate(-1%, -1%);
+  }
+
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+.page-timeline .animate-ken-burns {
+  animation: ken-burns 40s ease-in-out infinite;
+}
+
+.page-timeline .spore {
+  position: fixed;
+  background: #ffcccc;
+  border-radius: 50%;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 0 0 5px #ff0000;
+}
+
+.page-timeline .shadow-breathing-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  mix-blend-mode: multiply;
+  animation: vignette-pulse 12s ease-in-out infinite;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.95) 100%);
+}
+
+@keyframes vignette-pulse {
+
+  0%,
+  100% {
+    background: radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.4) 85%, rgba(0, 0, 0, 0.8) 100%);
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    background: radial-gradient(circle at center, transparent 35%, rgba(0, 0, 0, 0.7) 75%, #000 100%);
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.page-timeline .reality-shift {
+  animation: reality-flash 0.6s ease-in-out;
+}
+
+@keyframes reality-flash {
+  0% {
+    filter: brightness(1) contrast(1);
+  }
+
+  40% {
+    filter: brightness(3) contrast(2) saturate(2) hue-rotate(240deg);
+    background: #001;
+    box-shadow: inset 0 0 150px rgba(0, 50, 255, 0.4);
+  }
+
+  60% {
+    filter: brightness(0.6) contrast(1.8) invert(0.9) hue-rotate(180deg);
+    background: #000510;
+  }
+
+  100% {
+    filter: brightness(1) contrast(1);
+  }
+}
+
+.page-timeline .font-benguiat {
+  font-family: 'Benguiat', serif;
+}

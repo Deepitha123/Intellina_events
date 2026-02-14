@@ -1,0 +1,106 @@
+.particle-network-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    /* Behind content */
+    overflow: hidden;
+    background-color: #000;
+    /* Fallback */
+}
+
+/* Background Image Layer */
+.particle-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image is set inline in JS to avoid webpack module resolution issues */
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -2;
+    /* Behind particles */
+    opacity: 0.4;
+    /* Adjust as needed for readability */
+}
+
+/* Canvas Layer */
+.particle-network-animation canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* On top of background image, but behind content */
+}
+
+/* Glow Effects (from user snippet) */
+.glow {
+    z-index: -1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-image: radial-gradient(circle closest-side, rgba(229, 9, 20, 0.12), transparent);
+    /* Intellina Red, subtler */
+    pointer-events: none;
+    filter: blur(30px);
+}
+
+.glow-1 {
+    width: 150vw;
+    height: 150vh;
+    margin-top: -75vh;
+    margin-left: -75vw;
+    animation: glow-1-move 25s linear infinite both;
+}
+
+.glow-2 {
+    width: 100vw;
+    height: 100vh;
+    margin-top: -50vh;
+    margin-left: -50vw;
+    animation: glow-2-move 25s linear 8.33s infinite both;
+}
+
+.glow-3 {
+    width: 120vw;
+    height: 120vh;
+    margin-top: -60vh;
+    margin-left: -60vw;
+    animation: glow-3-move 25s linear 16.66s infinite both;
+}
+
+@keyframes glow-1-move {
+    from {
+        transform: translate(-100%, 100%);
+    }
+
+    to {
+        transform: translate(100%, -100%);
+    }
+}
+
+@keyframes glow-2-move {
+    from {
+        transform: translate(-100%, 0%);
+    }
+
+    to {
+        transform: translate(100%, 100%);
+    }
+}
+
+@keyframes glow-3-move {
+    from {
+        transform: translate(100%, 100%);
+    }
+
+    to {
+        transform: translate(0%, -100%);
+    }
+}

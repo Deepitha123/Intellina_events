@@ -1,0 +1,349 @@
+/* =========================================
+   STRANGER THINGS CARD DESIGN
+   ========================================= */
+
+/* Theme Variables - Default (Real World/Red) */
+:root {
+    --card-primary: #ff2a2a;
+    --card-secondary: #7b0000;
+    --card-shadow: rgba(255, 0, 0, 0.25);
+    --card-bg-gradient-1: #ff2a2a;
+    --card-bg-gradient-2: #5b0000;
+    --card-bg-gradient-3: #050000;
+    --card-text-glow: rgba(255, 0, 0, 0.6);
+    --card-accent: #ff4d4d;
+    --card-details-bg: #130000;
+    --card-details-text: #ff8a8a;
+}
+
+/* Upside Down Theme Variables (Blue/Cold) */
+.upside-down-theme {
+    --card-primary: #4a90e2;
+    --card-secondary: #004e92;
+    --card-shadow: rgba(74, 144, 226, 0.25);
+    --card-bg-gradient-1: #4a90e2;
+    --card-bg-gradient-2: #002b5e;
+    --card-bg-gradient-3: #05001a;
+    --card-text-glow: rgba(74, 144, 226, 0.6);
+    --card-accent: #6b5ce7;
+    --card-details-bg: #0a0a1a;
+    --card-details-text: #a0c4ff;
+}
+
+/* Base Card Container - Wrapper */
+.flip-card-wrapper {
+    perspective: 1000px;
+    width: 280px;
+    height: 380px;
+    margin: 20px auto;
+    overflow: hidden;
+    /* prevents spill */
+}
+
+.flip-card-wrapper * {
+    box-sizing: border-box;
+}
+
+/* THE CARD ITSELF */
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Smooth spring-like flip */
+    transform-style: preserve-3d;
+    border-radius: 20px;
+}
+
+/* FLIP ON HOVER */
+.card:hover .content {
+    transform: rotateY(180deg);
+}
+
+/* SHADOWS & GLOW - PER FACE TO AVOID ARTIFACTS */
+.front,
+.back {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* FRONT AND BACK COMMON */
+.front,
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.front {
+    transform: rotateY(0deg);
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+/* ================= FRONT SIDE ================= */
+.front {
+    background: #1a1a1a;
+    /* Fallback */
+    /* Use theme colors for gradient bg */
+    background: radial-gradient(circle at center, var(--card-bg-gradient-2), #000);
+    color: #fff;
+    position: relative;
+    border: 2px solid var(--card-primary);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Glare/Glow Scan Effect */
+.front::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.1) 60%, transparent);
+    transform: translateY(150%);
+    animation: glareScan 20s infinite cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes glareScan {
+    0% {
+        transform: translateY(150%);
+    }
+
+    40% {
+        transform: translateY(-150%);
+    }
+
+    100% {
+        transform: translateY(-150%);
+    }
+}
+
+.upside-down-theme .front {
+    border-color: var(--card-primary);
+    /* Blue in theme */
+}
+
+/* Placeholder Profile Image styling */
+.profile-image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.9) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.profile-icon {
+    width: 60%;
+    height: 60%;
+    color: var(--card-primary);
+    filter: drop-shadow(0 0 15px var(--card-shadow));
+    opacity: 0.8;
+}
+
+/* Front BG Overlay (Gradient) */
+.front-bg-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, var(--card-bg-gradient-3) 10%, transparent);
+    z-index: 2;
+}
+
+/* Front Details (Bottom Center) */
+.front-details {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+    padding: 0 10px;
+}
+
+.card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 10px var(--card-text-glow);
+    letter-spacing: 1.5px;
+}
+
+.card-role {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--card-details-text);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--card-primary);
+    display: inline-block;
+    margin-top: 8px;
+    box-shadow: 0 0 5px var(--card-shadow);
+}
+
+
+/* ================= BACK SIDE ================= */
+.back {
+    background: var(--card-details-bg);
+    color: #fff;
+    transform: rotateY(180deg);
+    border: 2px solid var(--card-primary);
+    /* Match border color */
+    padding: 20px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+.card-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 15px;
+    /* Reduced from 30px to fit contact info */
+    font-family: 'Roboto', sans-serif;
+    color: #ddd;
+}
+
+/* Contact Info Text Styling */
+.contact-text {
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.contact-item {
+    font-size: 0.85rem;
+    color: #a0c4ff;
+    /* Slightly brighter/tinted for readability */
+    margin: 4px 0;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.upside-down-theme .contact-item {
+    color: #ffd700;
+    /* Gold in upside down mode? Or keep consistent? Let's stick to readable. */
+}
+
+/* SOCIAL ICONS - V4 Circular Brand Style */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.icon-link {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.icon-link svg,
+.icon-link i {
+    /* Ensure icon size matches font-size expectation */
+    width: 20px;
+    height: 20px;
+    color: inherit;
+    /* inherit from parent */
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Brand colors */
+.icon-link.linkedin {
+    background: #0077b5;
+}
+
+.icon-link.github {
+    background: #333;
+}
+
+.icon-link.email {
+    background: #ff8c00;
+}
+
+.icon-link.phone {
+    background: #25d366;
+}
+
+/* Hover */
+.icon-link:hover {
+    background: #fff;
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover Icon Colors */
+.icon-link.linkedin:hover svg,
+.icon-link.linkedin:hover i {
+    color: #0077b5;
+    fill: #0077b5;
+}
+
+.icon-link.github:hover svg {
+    color: #333;
+    fill: #333;
+}
+
+.icon-link.email:hover svg {
+    color: #ff8c00;
+    fill: #ff8c00;
+}
+
+.icon-link.phone:hover svg {
+    color: #25d366;
+    fill: #25d366;
+}
+
+/* Override for Upside Down Theme? 
+   The user asked for "only whatever we use", implying these specific styles.
+   We will keep them colorful even in upside down to match the request,
+   but maybe add a subtle shadow tweak for integration.
+*/
+.upside-down-theme .icon-link {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

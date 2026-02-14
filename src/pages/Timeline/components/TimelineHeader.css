@@ -1,0 +1,13 @@
+.font-outlined {
+    font-family: 'StrangerThingsOutlined', sans-serif;
+}
+
+.distort-text {
+    transition: all 0.2s ease;
+}
+
+.distort-text:hover {
+    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+    filter: blur(0.5px);
+    transform: skewX(-10deg);
+}

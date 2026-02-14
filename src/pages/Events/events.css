@@ -1,0 +1,875 @@
+/* ==========================================
+   INTELLINA Events - Stranger Things Theme
+   Glassmorphism + Neon Cyberpunk Aesthetic
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Libre+Baskerville:wght@700&display=swap');
+
+
+
+/* ==========================================
+   BASE STYLES & RESET
+   ========================================== */
+.page-events * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page-events body {
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  background: #000;
+}
+
+/* ==========================================
+   EVENTS CONTAINER - DARK CINEMATIC ATMOSPHERE
+   ========================================== */
+.page-events .events-container {
+  min-height: 100vh;
+  /* Background image applied via inline styles in React components to avoid CSS loader issues with public assets */
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.9) 100%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #ffffff;
+  padding: 140px 20px 80px;
+  position: relative;
+  overflow-y: auto;
+  /* Changed from hidden to allow scrolling */
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Specific black background for event list pages */
+.page-events .events-black-bg {
+  background: #000 !important;
+  background-image: none !important;
+}
+
+/* Transparent background for particle network pages */
+.page-events .events-transparent-bg {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Animated red/pink neon glow atmosphere */
+.page-events .events-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(229, 9, 20, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 26, 26, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+  animation: atmosphericPulse 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes atmosphericPulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Global Ash Dust Drifting */
+.page-events .events-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(1.5px 1.5px at 50px 160px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0, 0, 0, 0));
+  background-size: 200px 200px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+  animation: driftDust 60s linear infinite;
+}
+
+@keyframes driftDust {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 1000px 1000px;
+  }
+}
+
+/* ==========================================
+   UPSIDE DOWN ATMOSPHERE
+   ========================================== */
+.page-events .upside-down-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.page-events .spore {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(200, 200, 255, 0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: floatUp 15s linear infinite;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.page-events .spore:nth-child(1) {
+  left: 10%;
+  animation-duration: 12s;
+  animation-delay: 0s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(2) {
+  left: 25%;
+  animation-duration: 18s;
+  animation-delay: 2s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(3) {
+  left: 40%;
+  animation-duration: 10s;
+  animation-delay: 5s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(4) {
+  left: 60%;
+  animation-duration: 22s;
+  animation-delay: 1s;
+  width: 6px;
+  height: 6px;
+}
+
+.page-events .spore:nth-child(5) {
+  left: 75%;
+  animation-duration: 14s;
+  animation-delay: 3s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(6) {
+  left: 90%;
+  animation-duration: 16s;
+  animation-delay: 6s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(7) {
+  left: 15%;
+  animation-duration: 20s;
+  animation-delay: 4s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(8) {
+  left: 35%;
+  animation-duration: 13s;
+  animation-delay: 8s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(9) {
+  left: 55%;
+  animation-duration: 17s;
+  animation-delay: 1s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(10) {
+  left: 80%;
+  animation-duration: 11s;
+  animation-delay: 3s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(11) {
+  left: 5%;
+  animation-duration: 25s;
+  animation-delay: 0s;
+  width: 6px;
+  height: 6px;
+}
+
+.page-events .spore:nth-child(12) {
+  left: 45%;
+  animation-duration: 19s;
+  animation-delay: 10s;
+  width: 4px;
+  height: 4px;
+}
+
+.page-events .spore:nth-child(13) {
+  left: 65%;
+  animation-duration: 15s;
+  animation-delay: 2s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(14) {
+  left: 85%;
+  animation-duration: 21s;
+  animation-delay: 7s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(15) {
+  left: 20%;
+  animation-duration: 14s;
+  animation-delay: 5s;
+  width: 5px;
+  height: 5px;
+}
+
+.page-events .spore:nth-child(16) {
+  left: 70%;
+  animation-duration: 18s;
+  animation-delay: 9s;
+  width: 5px;
+  height: 5px;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-10vh) translateX(20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.page-events .fog-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(to top, rgba(10, 10, 30, 0.6) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.page-events .fog-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png');
+  /* fallback or generated noise if needed, but let's try a simple gradient drift if no asset */
+  background: repeating-linear-gradient(90deg,
+      transparent 0,
+      rgba(200, 200, 255, 0.05) 10%,
+      transparent 20%);
+  filter: blur(20px);
+  animation: driftFog 20s linear infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes driftFog {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================
+   EVENTS LANDING PAGE - CATEGORY PORTALS
+   ========================================== */
+.page-events .events-landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 80vh;
+  position: relative;
+  z-index: 10;
+}
+
+.page-events .events-landing-title {
+  font-family: serif;
+  font-size: clamp(2rem, 8vw, 4rem);
+  text-align: center;
+  color: #fffaf0;
+  -webkit-text-stroke: clamp(1px, 0.4vw, 2px) #ff0000;
+  text-shadow:
+    0 0 15px rgba(255, 0, 0, 0.8),
+    0 0 30px rgba(255, 0, 0, 0.6),
+    0 0 45px rgba(255, 0, 0, 0.4);
+  font-weight: 900;
+  letter-spacing: clamp(2px, 1vw, 5.2px);
+  text-transform: uppercase;
+  margin-bottom: clamp(40px, 10vw, 120px);
+  position: relative;
+  z-index: 10;
+  cursor: default;
+  transition: all 0.3s ease;
+  width: 90%;
+}
+
+.page-events .events-landing-title:hover {
+  text-shadow:
+    0 0 25px rgba(255, 0, 0, 1),
+    0 0 50px rgba(255, 0, 0, 0.8),
+    0 0 75px rgba(255, 0, 0, 0.6);
+  transform: scale(1.02);
+}
+
+.page-events .event-card {
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.65),
+      rgba(20, 0, 20, 0.85));
+  backdrop-filter: blur(6px);
+  border: 1.5px solid rgba(255, 0, 60, 0.6);
+  box-shadow:
+    0 0 15px rgba(255, 0, 60, 0.3);
+  border: 1.5px solid rgba(255, 0, 60, 0.6);
+  box-shadow:
+    0 0 15px rgba(255, 0, 60, 0.3);
+}
+
+@keyframes titleGlow {
+  0% {
+    text-shadow:
+      0 0 30px rgba(229, 9, 20, 1),
+      0 0 60px rgba(229, 9, 20, 0.8),
+      0 0 90px rgba(229, 9, 20, 0.5);
+  }
+
+  100% {
+    text-shadow:
+      0 0 40px rgba(229, 9, 20, 1),
+      0 0 80px rgba(229, 9, 20, 1),
+      0 0 120px rgba(229, 9, 20, 0.7);
+  }
+}
+
+.page-events .event-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow:
+    0 30px 60px rgba(36, 33, 33, 0.8),
+    0 0 30px rgba(255, 0, 60, 0.6);
+}
+
+.page-events .event-card h2 {
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 12px rgba(255, 0, 60, 0.6);
+}
+
+.page-events .events-landing-subtitle {
+  font-size: clamp(0.75rem, 2vw, 0.95rem);
+  color: rgba(211, 55, 55, 0.72);
+  letter-spacing: clamp(1.5px, 0.5vw, 3.5px);
+  text-transform: uppercase;
+  margin-bottom: clamp(30px, 6vw, 70px);
+  font-weight: 700;
+  text-shadow: 0 0 18px rgba(245, 46, 56, 0.35);
+  transition: all 0.3s ease;
+  text-align: center;
+  width: 80%;
+}
+
+.page-events .events-landing-subtitle:hover {
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(229, 9, 20, 0.8);
+}
+
+/* Event Grid - Massive Columns - Scaled for 2x Presence */
+.page-events .event-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 95%;
+  max-width: 1500px;
+  margin: 40px auto;
+  position: relative;
+  z-index: 10;
+  justify-content: center;
+  /* Center cards for better visual balance */
+}
+
+@media (max-width: 768px) {
+  .event-grid {
+    gap: 10px;
+    /* Reduced gap since scale handles whitespace */
+    margin-top: 10px;
+    padding-bottom: 40px;
+  }
+}
+
+/* Category Cards Grid - Preservation */
+.page-events .category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1400px;
+  width: 100%;
+  padding: 0 20px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .category-grid {
+    max-width: 450px;
+  }
+}
+
+/* ==========================================
+   CATEGORY CARD - GLASS PORTAL STYLE
+   ========================================== */
+.page-events .category-card {
+  position: relative;
+  background: rgba(15, 0, 0, 0.35);
+  /* More transparent background */
+  backdrop-filter: blur(16px);
+  /* Increased blur */
+  -webkit-backdrop-filter: blur(16px);
+  border: 2.5px solid rgba(229, 9, 20, 0.45);
+  border-radius: 26px;
+  padding: 85px 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow:
+    0 0 35px rgba(229, 9, 20, 0.35),
+    0 18px 50px rgba(0, 0, 0, 0.65),
+    inset 0 0 50px rgba(229, 9, 20, 0.08);
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+.page-events .category-card::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 26px;
+  background: linear-gradient(135deg,
+      rgba(229, 9, 20, 0.3) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(229, 9, 20, 0.25) 100%);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 0;
+  animation: portalSwirl 8s linear infinite paused;
+}
+
+
+.page-events .category-card:hover::after {
+  opacity: 0.6;
+  animation-play-state: running;
+}
+
+@keyframes portalPulseStrong {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    filter: blur(50px);
+  }
+
+  50% {
+    opacity: 1;
+    filter: blur(60px);
+  }
+}
+
+@keyframes portalSwirl {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hover Effects - Premium Interactive Feel + Flicker */
+.page-events .category-card:hover {
+  transform: translateY(-15px) scale(1.06);
+  border-color: rgba(229, 9, 20, 0.9);
+  box-shadow:
+    0 0 70px rgba(229, 9, 20, 0.7),
+    0 0 100px rgba(229, 9, 20, 0.4),
+    0 30px 80px rgba(0, 0, 0, 0.95),
+    inset 0 0 70px rgba(229, 9, 20, 0.15);
+  background: rgba(35, 33, 33, 0.6);
+  animation: cardFlicker 0.15s ease-in-out 2;
+}
+
+/* Flicker Animation */
+@keyframes cardFlicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.95;
+    border-color: rgba(229, 9, 20, 0.75);
+  }
+}
+
+/* Animations reused from EventCard.css logic or defined globally below if needed */
+@keyframes vhsFlicker {
+  0% {
+    transform: translateY(0);
+  }
+
+  1% {
+    transform: translateY(-1px);
+    opacity: 0.7;
+  }
+
+  2% {
+    transform: translateY(1px);
+    opacity: 0.5;
+  }
+
+  3% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes glitchLines {
+  0% {
+    clip-path: inset(10% 0 80% 0);
+    transform: translate(-2px);
+  }
+
+  20% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(2px);
+  }
+
+  40% {
+    clip-path: inset(70% 0 20% 0);
+    transform: translate(-1px);
+  }
+
+  60% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(1px);
+  }
+
+  80% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-2px);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+.page-events .category-card:active {
+  transform: translateY(-8px) scale(1.03);
+}
+
+.page-events .category-card-title {
+  font-family: 'Courier New', monospace;
+  /* Normal sans-serif font */
+  font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.page-events .category-card:hover .category-card-title {
+  text-shadow:
+    0 0 30px rgba(229, 9, 20, 1),
+    0 0 60px rgba(229, 9, 20, 0.9),
+    0 0 90px rgba(229, 9, 20, 0.6);
+  transform: scale(1.05);
+}
+
+.page-events .category-card-subtitle {
+  font-size: 1.1rem;
+  color: rgba(244, 236, 236, 0.7);
+  letter-spacing: 2px;
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+  line-height: 1.6;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================
+   EVENT LIST PAGE LAYOUT
+   ========================================== */
+.page-events .event-list-container {
+  width: 100%;
+  max-width: 100%;
+  /* Allow full width for massive cards */
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.page-events .event-list-header {
+  text-align: center;
+  margin-bottom: 40px;
+  /* Further reduced from 60px */
+  padding-top: 5px;
+  /* Shifted up slightly more */
+}
+
+.page-events .event-list-title {
+  font-family: 'Benguiat', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #ff1a1a;
+  text-shadow: 0 0 30px rgba(255, 0, 0, 1);
+  font-weight: 900;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.page-events .event-list-title:hover {
+  text-shadow:
+    0 0 40px rgba(255, 0, 0, 1),
+    0 0 80px rgba(255, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.page-events .event-list-description {
+  display: none;
+  /* User said "text at the top is not needed" */
+}
+
+/* Redundant grid removed to prevent override */
+
+/* Flagship Card Container - Single Centered Card */
+.page-events .flagship-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 60vh;
+}
+
+.page-events .flagship-card-container>* {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* ==========================================
+   BREADCRUMB
+   ========================================== */
+.page-events .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 0;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.45);
+  flex-wrap: wrap;
+  position: absolute;
+  top: 15px;
+  /* Moved up a bit */
+  left: 30px;
+  z-index: 50;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 500;
+}
+
+.page-events .breadcrumb a {
+  color: #ff0000;
+  text-decoration: none;
+  transition: all 0.3s;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.page-events .breadcrumb a:hover {
+  color: #ff3333;
+  text-shadow: 0 0 25px rgba(229, 9, 20, 1), 0 0 45px rgba(255, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.page-events .breadcrumb-separator {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.page-events .breadcrumb-current {
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+@media (max-width: 1200px) {
+  .event-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .events-container {
+    padding: 100px 30px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .events-container {
+    padding: 100px 15px 40px;
+  }
+
+  .breadcrumb {
+    top: 5px;
+    left: 15px;
+    font-size: 0.9rem;
+  }
+}
+
+.page-events .event-list-header {
+  margin-bottom: 40px;
+}
+
+@media (max-width: 480px) {
+  .category-card-title {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* ==========================================
+   ENTRANCE ANIMATIONS
+   ========================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-events .category-card {
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.page-events .category-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.page-events .category-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.page-events .category-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* This creates click ripples on cards and buttons */
+.page-events .category-card,
+.page-events .glass-event-card,
+.page-events .btn-stylized {
+  overflow: hidden;
+  position: relative;
+}
+
+::selection {
+  background: rgba(229, 9, 20, 0.4);
+  color: #ffffff;
+}
+
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.4), 0 0 20px rgba(229, 9, 20, 0.3);
+}
+
+.page-events .stranger-font {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1.5px #E71D36;
+  color: transparent;
+  text-shadow: 0 0 15px rgba(231, 29, 54, 0.6);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.page-events .stranger-font:hover {
+  text-shadow:
+    0 0 20px rgb(237, 57, 66),
+    0 0 40px rgba(229, 9, 20, 0.8),
+    0 0 60px rgba(229, 9, 20, 0.6);
+  transform: scale(1.02);
+  color: rgba(229, 29, 54, 0.1);
+}

@@ -1,0 +1,70 @@
+/* Home Page Styles - Perfect Isolation */
+
+.page-home .st-robot-wrapper {
+    mask-image: linear-gradient(to bottom, black calc(100% - 40px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 40px), transparent 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-home .st-robot-wrapper iframe+div {
+    display: none !important;
+}
+
+.page-home .hero-presents {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+}
+
+.page-home .hero-symposium {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #ff0033;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(255, 0, 51, 0.3);
+}
+
+.page-home .hero-description {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 500px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.page-home .hero-countdown-centered .st-flip-clock {
+    gap: 1rem;
+    transform: scale(0.8);
+    transform-origin: center top;
+    justify-content: center;
+}
+
+.page-home .st-flip-card {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    overflow: hidden !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+}
+
+@keyframes slide-up-word-home {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-home .animate-slide-up-word {
+    animation: slide-up-word-home 0.6s ease-out;
+}
