@@ -7,7 +7,7 @@ import SplashCursor from '../../components/members/effects/SplashCursor/SplashCu
 import D20 from '../../components/members/ui/D20/D20';
 import StrangerTitle from '../../components/members/ui/StrangerTitle/StrangerTitle';
 import ScrollReveal from '../../components/members/effects/ScrollReveal/ScrollReveal';
-import "./Members.css";
+import "./members.css";
 
 
 export default function Members() {
