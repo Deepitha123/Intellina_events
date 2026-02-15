@@ -121,7 +121,7 @@ export default function Passes() {
         <div className="page-passes">
             <div id="unified-passes-page">
                 <div className="passes-bg">
-                    <div className="relative z-10" style={{ maxWidth: '1100px', margin: '0 auto', padding: '80px 20px' }}>
+                    <div className="relative z-10" style={{ maxWidth: '1100px', margin: '0 auto', padding: '20px 20px 80px' }}>
 
 
 

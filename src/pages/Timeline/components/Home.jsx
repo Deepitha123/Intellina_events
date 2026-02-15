@@ -192,8 +192,10 @@ export function renderHome() {
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-st-red/15 to-transparent opacity-0 group-hover/robot:opacity-100 transition-opacity duration-500 pointer-events-none" style="animation: scan-line 3s linear infinite; z-index: 50;"></div>
                         
                         <!-- Wrapper to hide Watermark -->
-                        <div class="st-robot-wrapper">
+                        <div class="st-robot-wrapper relative overflow-hidden">
                             <iframe src='https://my.spline.design/cursorfollowingrobotforlandingpage-5NU0McsEOBFHsDQKPPYYrwB1/' frameborder='0' width='100%' height='100%'></iframe>
+                            <!-- Spline Watermark Hider Overlay -->
+                            <div class="absolute bottom-0 right-0 w-32 h-10 bg-black z-50 pointer-events-none"></div>
                         </div>
                         
                         <!-- Status Header Overlay -->

@@ -140,7 +140,7 @@ const Home = () => {
             </div>
 
             {/* Main Content Split - Note: Navbar is now in Layout */}
-            <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-32 pb-12 min-h-screen flex flex-col justify-center pointer-events-none">
+            <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-8 pb-12 min-h-screen flex flex-col justify-center pointer-events-none">
                 {/* Pointer events re-enabled on interactive children */}
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-32">
 
@@ -248,7 +248,7 @@ const Home = () => {
 
                         <div className="flex flex-wrap justify-center gap-6 pt-4">
                             {/* Register Button - Premium Design with Pulse Effect */}
-                            <button className="group relative flex items-center gap-3 px-12 py-4 bg-gradient-to-r from-white via-gray-100 to-white text-black font-black text-xl rounded-xl overflow-hidden transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:shadow-[0_0_50px_rgba(255,255,255,0.8)]">
+                            <Link to="/passes" className="group relative flex items-center gap-3 px-12 py-4 bg-gradient-to-r from-white via-gray-100 to-white text-black font-black text-xl rounded-xl overflow-hidden transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:shadow-[0_0_50px_rgba(255,255,255,0.8)]">
                                 {/* Animated Background Shine */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
@@ -259,7 +259,7 @@ const Home = () => {
                                     <path d="M8 5v14l11-7z" />
                                 </svg>
                                 <span className="relative z-10 tracking-wider">REGISTER</span>
-                            </button>
+                            </Link>
                         </div>
                     </div>
 
@@ -279,8 +279,8 @@ const Home = () => {
                                 </div>
                                 <div className="st-robot-wrapper w-full h-full relative">
                                     <iframe src='https://my.spline.design/genkubgreetingrobot-fzWnKIUrSKa0RwHGiBYduZeq/' frameBorder='0' width='100%' height='100%'></iframe>
-                                    {/* Spline Watermark Hider Overlay */}
-                                    <div className="absolute bottom-0 right-0 w-32 h-12 bg-black z-50 pointer-events-auto cursor-default" title="Spline Watermark Hider"></div>
+                                    {/* Spline Watermark Hider Overlay - Covers "Built with Spline" */}
+                                    <div className="absolute bottom-0 right-0 w-64 h-16 bg-black z-50 pointer-events-none"></div>
                                 </div>
                             </div>
                         </div>

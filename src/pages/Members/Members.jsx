@@ -140,7 +140,7 @@ export default function Members() {
                             textTop="INTELLINA"
                             textBottom="2K26"
                             subtitle="DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
-                            introText={<>A National-Level Tech Fest<br />by</>}
+                            introText={<></>}
                             isUpsideDown={isUpsideDown}
                         />
                     </ScrollReveal>
