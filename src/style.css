@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Benguiat';
+  src: url('./assets/timeline/fonts/BenguiatBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 @theme {
   --color-st-red: #ff0033;
   --color-st-dark: #0a0a0a;

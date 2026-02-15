@@ -130,29 +130,25 @@ export default function Passes() {
                             initial={{ opacity: 0, y: -30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="section-heading text-center text-[45px] mb-4"
+                            className="section-heading text-center text-[45px] mb-4 flex justify-center font-bold"
                             style={{ fontSize: '45px' }}
                         >
-                            <center>CHOOSE YOUR BATTLE PASS</center>
-
+                            CHOOSE YOUR BATTLE PASS
                         </motion.h1>
 
-                        <motion.p
+                        <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4 }}
-                            className="page-subtitle text-center max-w-2xl mx-auto"
+                            className="page-subtitle text-center max-w-2xl mx-auto flex justify-center"
                             style={{ marginBottom: '60px' }}
                         >
-                            <center>
-                                <div className="inline-block px-6 py-2 rounded-full border border-red-500/30 bg-red-950/20 backdrop-blur-sm">
-                                    <p className="text-red-400 font-mono text-sm md:text-base tracking-widest uppercase animate-pulse">
-                                        ⚠ Early Bird Registration - Active only for Few days — Expiring Soon
-                                    </p>
-                                </div>
-                            </center>
-
-                        </motion.p>
+                            <div className="inline-block px-6 py-2 rounded-full border border-red-500/30 bg-red-950/20 backdrop-blur-sm">
+                                <p className="text-red-400 font-mono text-sm md:text-base tracking-widest uppercase animate-pulse mb-0">
+                                    ⚠ Early Bird Registration - Active only for Few days — Expiring Soon
+                                </p>
+                            </div>
+                        </motion.div>
 
                         {/* 2x2 Grid */}
                         <div className="passes-grid" style={{
@@ -210,15 +206,13 @@ export default function Passes() {
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
-                            className="text-center pt-10"
+                            className="text-center pt-10 flex flex-col items-center"
                             style={{ borderTop: '1px solid rgba(255,26,26,0.08)' }}
                         >
                             <br />
-                            <center>
-                                <p className="warning-text mt-6">
-                                    ⚠ One pass allows access only to events listed under it.
-                                </p>
-                            </center>
+                            <p className="warning-text mt-6">
+                                ⚠ One pass allows access only to events listed under it.
+                            </p>
                         </motion.div>
                     </div >
                 </div >

@@ -142,7 +142,7 @@ export class ParticleRing {
             const rotatedY = particle.x * Math.sin(this.rotation) + particle.y * Math.cos(this.rotation);
 
             // Project to 2D (simple perspective)
-            const scale = 1 + (particle.z / 500);
+            const scale = Math.max(0.1, 1 + (particle.z / 500));
             const screenX = this.centerX + rotatedX * scale;
             const screenY = this.centerY + rotatedY * scale;
 

@@ -108,7 +108,7 @@ const EventDescription = () => {
 
               {/* Actions */}
               <div className="event-actions">
-                <button className="register-btn">
+                <button className="register-btn" onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScUsI6og_xxSWquoO9k74xv3ZbN1xHb5D94Kw8jrLcpdih0Rw/viewform', '_blank')}>
                   SECURE YOUR SPOT NOW
                 </button>
               </div>

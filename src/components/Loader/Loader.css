@@ -30,7 +30,7 @@
 
 @font-face {
     font-family: 'Benguiat';
-    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/161676/BenguiatProITC-BoldCond.woff') format('woff');
+    src: url('../../assets/timeline/fonts/BenguiatBold.ttf') format('truetype');
     font-style: normal;
     font-weight: bold;
 }
@@ -336,6 +336,7 @@
     color: var(--color-credits);
     background: linear-gradient(var(--color-credits-top), var(--color-credits-bottom));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
