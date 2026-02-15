@@ -19,6 +19,16 @@ const Home = () => {
     const heroCountdownRef = useRef(null);
     // const bentoRef = useRef(null); // Commented out in original
 
+    const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     useEffect(() => {
         let particlesCleanup;
         let fuzzyTitle;
@@ -36,23 +46,23 @@ const Home = () => {
 
         if (heroCountdownRef.current) heroCountdownRef.current.innerHTML = '';
 
-        // 0. Initialize Particles Background
-        if (homePageRef.current) {
+        // 0. Initialize Particles Background - DISABLED ON MOBILE
+        if (homePageRef.current && !isMobile) {
             particlesCleanup = initParticles(homePageRef.current);
         }
 
-        // 1. Initialize Fuzzy Text Effect
+        // 1. Initialize Fuzzy Text Effect - OPTIMIZED FOR MOBILE
         if (fuzzyTitleRef.current) {
             fuzzyTitle = new FuzzyText(fuzzyTitleRef.current, {
                 text: 'INTELLINA',
                 fontSize: 'clamp(4rem, 12vw, 10rem)',
                 fontWeight: 900,
                 color: '#fff',
-                glitchMode: true,
-                fuzzRange: 15,
-                baseIntensity: 0.1,
-                hoverIntensity: 0.4,
-                fps: 30
+                glitchMode: !isMobile, // Disable glitch on mobile
+                fuzzRange: isMobile ? 5 : 15, // Reduce fuzz on mobile
+                baseIntensity: isMobile ? 0.05 : 0.1,
+                hoverIntensity: isMobile ? 0.1 : 0.4,
+                fps: isMobile ? 15 : 30 // Lower FPS on mobile
             });
         }
 
@@ -62,17 +72,17 @@ const Home = () => {
                 fontSize: 'clamp(2rem, 6vw, 5rem)',
                 fontWeight: 700,
                 color: '#ff0033',
-                glitchMode: true,
-                fuzzRange: 20,
-                baseIntensity: 0.2,
-                hoverIntensity: 0.6,
+                glitchMode: !isMobile, // Disable glitch on mobile
+                fuzzRange: isMobile ? 5 : 20,
+                baseIntensity: isMobile ? 0.05 : 0.2,
+                hoverIntensity: isMobile ? 0.2 : 0.6,
                 className: 'transform -rotate-2 font-mono',
-                fps: 30
+                fps: isMobile ? 15 : 30
             });
         }
 
-        // 1. Initialize Torn Paper Effect on BACKGROUND
-        if (tornPaperRef.current) {
+        // 1. Initialize Torn Paper Effect on BACKGROUND - DISABLED ON MOBILE
+        if (tornPaperRef.current && !isMobile) {
             tornPaper = new TornPaperEffect(tornPaperRef.current, {
                 particleCount: 50,
                 glowColor: '255, 255, 255', // White color
@@ -107,8 +117,9 @@ const Home = () => {
             if (tornPaperRef.current) tornPaperRef.current.innerHTML = '';
             if (countdownRef.current) countdownRef.current.innerHTML = '';
 
+
         };
-    }, []);
+    }, [isMobile]);
 
     return (
         <div ref={homePageRef} className="page-home relative min-h-screen w-full bg-black scroll-smooth overflow-x-hidden">
@@ -116,20 +127,22 @@ const Home = () => {
             {/* BACKGROUND: Torn Paper Effect Container */}
             <div id="torn-paper-background" ref={tornPaperRef} className="fixed inset-0 z-0 opacity-60 pointer-events-none"></div>
 
-            {/* BACKGROUND: Magic Bento Grid (Revolving) */}
-            <div id="magic-bento-background" className="fixed inset-0 z-0 opacity-40 pointer-events-none perspective-1000 overflow-visible">
-                <div className="absolute inset-0 flex items-center justify-center transform-style-3d animate-slow-rotate">
-                    {/* Generating abstract bento shapes for background */}
-                    <div className="magic-bento-card absolute w-64 h-64 bg-st-red/10 border border-st-red/20 rounded-xl" style={{ top: '10%', left: '20%', transform: 'translateZ(-100px)' }}></div>
-                    <div className="magic-bento-card absolute w-80 h-56 bg-st-red/5 border border-white/10 rounded-xl" style={{ top: '60%', left: '70%', transform: 'translateZ(50px)' }}></div>
-                    <div className="magic-bento-card absolute w-48 h-48 bg-st-red/10 border border-st-red/30 rounded-xl" style={{ top: '30%', left: '80%', transform: 'translateZ(-200px) rotate(45deg)' }}></div>
-                    <div className="magic-bento-card absolute w-96 h-64 bg-st-red/5 border border-white/10 rounded-xl" style={{ top: '70%', left: '10%', transform: 'translateZ(100px)' }}></div>
-                    <div className="magic-bento-card absolute w-56 h-56 bg-st-red/5 border border-white/5 rounded-xl" style={{ top: '15%', left: '50%', transform: 'translateZ(0px)' }}></div>
-                    <div className="magic-bento-card absolute w-72 h-40 bg-st-red/10 border border-st-red/20 rounded-xl" style={{ bottom: '20%', right: '40%', transform: 'translateZ(-50px)' }}></div>
+            {/* BACKGROUND: Magic Bento Grid (Revolving) - DISABLED ON MOBILE */}
+            {!isMobile && (
+                <div id="magic-bento-background" className="fixed inset-0 z-0 opacity-40 pointer-events-none perspective-1000 overflow-visible">
+                    <div className="absolute inset-0 flex items-center justify-center transform-style-3d animate-slow-rotate">
+                        {/* Generating abstract bento shapes for background */}
+                        <div className="magic-bento-card absolute w-64 h-64 bg-st-red/10 border border-st-red/20 rounded-xl" style={{ top: '10%', left: '20%', transform: 'translateZ(-100px)' }}></div>
+                        <div className="magic-bento-card absolute w-80 h-56 bg-st-red/5 border border-white/10 rounded-xl" style={{ top: '60%', left: '70%', transform: 'translateZ(50px)' }}></div>
+                        <div className="magic-bento-card absolute w-48 h-48 bg-st-red/10 border border-st-red/30 rounded-xl" style={{ top: '30%', left: '80%', transform: 'translateZ(-200px) rotate(45deg)' }}></div>
+                        <div className="magic-bento-card absolute w-96 h-64 bg-st-red/5 border border-white/10 rounded-xl" style={{ top: '70%', left: '10%', transform: 'translateZ(100px)' }}></div>
+                        <div className="magic-bento-card absolute w-56 h-56 bg-st-red/5 border border-white/5 rounded-xl" style={{ top: '15%', left: '50%', transform: 'translateZ(0px)' }}></div>
+                        <div className="magic-bento-card absolute w-72 h-40 bg-st-red/10 border border-st-red/20 rounded-xl" style={{ bottom: '20%', right: '40%', transform: 'translateZ(-50px)' }}></div>
+                    </div>
+                    {/* Fog/Lights Overlay */}
+                    <div className="absolute inset-0 bg-cover bg-center mix-blend-screen opacity-50" style={{ backgroundImage: `url(${bgLights})` }}></div>
                 </div>
-                {/* Fog/Lights Overlay */}
-                <div className="absolute inset-0 bg-cover bg-center mix-blend-screen opacity-50" style={{ backgroundImage: `url(${bgLights})` }}></div>
-            </div>
+            )}
 
             {/* Main Content Split - Note: Navbar is now in Layout */}
             <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-8 pb-12 min-h-screen flex flex-col justify-center pointer-events-none">
@@ -260,9 +273,13 @@ const Home = () => {
                         <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
 
 
-                            {/* Holographic Rings */}
-                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border-2 border-st-red/15 rounded-full animate-spin-slow pointer-events-none" style={{ boxShadow: '0 0 40px rgba(255,0,51,0.2)' }}></div>
-                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] border border-dashed border-st-red/25 rounded-full animate-spin-reverse pointer-events-none"></div>
+                            {/* Holographic Rings - DISABLED ON MOBILE */}
+                            {!isMobile && (
+                                <>
+                                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border-2 border-st-red/15 rounded-full animate-spin-slow pointer-events-none" style={{ boxShadow: '0 0 40px rgba(255,0,51,0.2)' }}></div>
+                                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] border border-dashed border-st-red/25 rounded-full animate-spin-reverse pointer-events-none"></div>
+                                </>
+                            )}
 
                             <div className="st-robot-container group/robot relative z-10 w-full h-full overflow-visible">
                                 <div className="robot-speech-bubble">
@@ -295,7 +312,11 @@ const Home = () => {
                     <div className="relative w-full max-w-4xl">
                         <div className="absolute inset-0 bg-gradient-to-r from-st-red/20 via-st-red/30 to-st-red/20 rounded-2xl blur-2xl opacity-60 animate-pulse-slow"></div>
                         <div className="relative glass-premium glass-premium--red rounded-2xl p-8 md:p-12 border-2 border-st-red/40 overflow-hidden group/timer">
-                            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(rgba(255,0,51,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,51,0.3) 1px, transparent 1px)', backgroundSize: '20px 20px', animation: 'grid-move 20s linear infinite' }}></div>
+                            <div className="absolute inset-0 opacity-10" style={{
+                                backgroundImage: 'linear-gradient(rgba(255,0,51,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,51,0.3) 1px, transparent 1px)',
+                                backgroundSize: '20px 20px',
+                                animation: isMobile ? 'none' : 'grid-move 20s linear infinite'
+                            }}></div>
                             <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-st-red rounded-tl-2xl opacity-60"></div>
                             <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-st-red rounded-tr-2xl opacity-60"></div>
                             <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-st-red rounded-bl-2xl opacity-60"></div>
