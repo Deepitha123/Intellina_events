@@ -22,7 +22,7 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
   .card-wrapper {
     transform: scale(0.75);
     margin: -60px auto;

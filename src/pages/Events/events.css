@@ -768,33 +768,56 @@
 /* ==========================================
    RESPONSIVE DESIGN
    ========================================== */
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
 @media (max-width: 1200px) {
-  .event-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 35px;
+  .page-events .event-grid {
+    justify-content: center;
+    gap: 30px;
   }
 }
 
 @media (max-width: 1024px) {
-  .events-container {
+  .page-events .events-container {
     padding: 100px 30px 60px;
   }
 }
 
 @media (max-width: 768px) {
-  .events-container {
-    padding: 100px 15px 40px;
+  .page-events .events-container {
+    padding: 80px 15px 120px;
+    /* Reduced top padding, increased bottom for DiceRoller */
   }
 
-  .breadcrumb {
-    top: 5px;
+  .page-events .breadcrumb {
+    top: 80px;
+    /* Adjusted position */
     left: 15px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    width: 100%;
+    justify-content: center;
+    position: static;
+    /* Stack naturally on mobile */
+    margin-bottom: 20px;
+  }
+
+  .page-events .event-grid {
+    gap: 20px;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-events .event-card {
+    width: 100%;
+    max-width: 350px;
+    /* Ensure cards don't get too wide on mobile */
   }
 }
 
 .page-events .event-list-header {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 480px) {

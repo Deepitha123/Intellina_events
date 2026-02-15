@@ -248,14 +248,14 @@ const Timeline = () => {
                         <TimelineClock activeDay={activeDay} scrollY={scrollY} />
 
                         <div className="text-center z-10 relative mt-6 mb-8">
-                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-outlined font-normal text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-100 to-gray-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] animate-flicker">
+                            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-outlined font-normal text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-100 to-gray-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] animate-flicker">
                                 THE SCHEDULE IS SET
                             </h2>
                             <p className="text-red-400 text-xs font-benguiat tracking-[0.4em] uppercase mt-3 animate-pulse">Time is running out</p>
-                            <div className="flex justify-center gap-6 mt-8">
+                            <div className="flex justify-center gap-4 sm:gap-6 mt-8 flex-wrap">
                                 <button
                                     onClick={() => handleDayChange('day1')}
-                                    className={`px-8 py-2 font-benguiat text-lg tracking-[0.2em] transition-all duration-500 border-b-2 ${activeDay === 'day1'
+                                    className={`px-6 sm:px-8 py-2 font-benguiat text-base sm:text-lg tracking-[0.2em] transition-all duration-500 border-b-2 ${activeDay === 'day1'
                                         ? 'text-primary-light border-primary drop-shadow-[0_0_8px_rgba(255,0,0,0.5)]'
                                         : 'text-gray-600 border-transparent hover:text-gray-400'
                                         }`}
@@ -264,7 +264,7 @@ const Timeline = () => {
                                 </button>
                                 <button
                                     onClick={() => handleDayChange('day2')}
-                                    className={`px-8 py-2 font-benguiat text-lg tracking-[0.2em] transition-all duration-500 border-b-2 ${activeDay === 'day2'
+                                    className={`px-6 sm:px-8 py-2 font-benguiat text-base sm:text-lg tracking-[0.2em] transition-all duration-500 border-b-2 ${activeDay === 'day2'
                                         ? 'text-blue-400 border-blue-500 drop-shadow-[0_0_8px_rgba(0,100,255,0.5)]'
                                         : 'text-gray-600 border-transparent hover:text-gray-400'
                                         }`}

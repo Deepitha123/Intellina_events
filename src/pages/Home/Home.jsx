@@ -279,8 +279,9 @@ const Home = () => {
                                 </div>
                                 <div className="st-robot-wrapper w-full h-full relative">
                                     <iframe src='https://my.spline.design/genkubgreetingrobot-fzWnKIUrSKa0RwHGiBYduZeq/' frameBorder='0' width='100%' height='100%'></iframe>
-                                    {/* Spline Watermark Hider Overlay - Covers "Built with Spline" */}
-                                    <div className="absolute bottom-0 right-0 w-64 h-16 bg-black z-50 pointer-events-none"></div>
+                                    {/* Spline Watermark Hider Overlay */}
+                                    <div className="absolute bottom-0 right-0 w-48 h-16 bg-black z-50 pointer-events-none"></div>
+                                    <div className="absolute bottom-0 right-0 w-32 h-10 bg-black z-50 pointer-events-none translate-x-4 translate-y-4"></div>
                                 </div>
                             </div>
                         </div>

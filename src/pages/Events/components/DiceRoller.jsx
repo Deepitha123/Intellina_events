@@ -463,66 +463,60 @@ const DiceRoller = ({ category = 'technical' }) => {
         </div>
       </div>
 
-      {/* Result Modal - Compact and Clean */}
+      {/* Result Modal - Professional & Aligned */}
       {showResult && selectedEvent && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] animate-fadeIn backdrop-blur-xl p-4">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.8)_100%)] pointer-events-none"></div>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] animate-fadeIn backdrop-blur-md p-4">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,0,0.15),transparent_70%)] pointer-events-none"></div>
 
-          <div className="bg-[#080808] rounded-2xl max-w-lg w-full border-2 border-[#ff2b2b]/60 modal-border-pulse animate-scaleIn relative overflow-hidden flex flex-col max-h-[85vh]">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,0,0,0.1),transparent_70%)] pointer-events-none"></div>
+          <div className="bg-[#0a0a0a] rounded-xl max-w-md w-full border border-st-red/30 shadow-[0_0_50px_rgba(255,0,0,0.2)] animate-scaleIn relative overflow-hidden flex flex-col">
 
-            <div className="p-5 md:p-6 text-center relative z-10 overflow-y-auto custom-scrollbar flex-grow">
-              <div className="relative inline-block mb-3 group/die">
-                <div className="absolute inset-0 bg-red-600/20 blur-2xl rounded-full opacity-0 group-hover/die:opacity-100 transition-opacity duration-500"></div>
-                <div className="text-5xl md:text-6xl die-icon-rotate cursor-help transition-transform duration-500 group-hover/die:scale-125 drop-shadow-[0_0_20px_rgba(255,0,0,0.5)]">
-                  🎲
+            {/* Header / Title Section */}
+            <div className="p-6 md:p-8 text-center relative z-10">
+              <div className="mb-4 inline-flex items-center justify-center w-16 h-16 rounded-full bg-st-red/10 border border-st-red/20 mb-4 shadow-[0_0_20px_rgba(255,0,0,0.2)]">
+                <span className="text-3xl filter drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]">🎲</span>
+              </div>
+
+              <div className="space-y-1 mb-6">
+                <h2 className="text-st-red text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold">Lucky Pick</h2>
+                <h3 className="text-white text-2xl md:text-3xl font-black uppercase tracking-wider leading-tight" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+                  {selectedEvent.title}
+                </h3>
+              </div>
+
+              {/* Info Grid - Symmetrical */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-white/5 rounded-lg p-3 border border-white/5 text-center hover:bg-white/10 transition-colors">
+                  <span className="text-gray-500 text-[10px] uppercase tracking-wider font-bold block mb-1">Category</span>
+                  <span className="text-st-red font-bold uppercase text-sm tracking-wide">{categoryNames[category] || category}</span>
+                </div>
+                <div className="bg-white/5 rounded-lg p-3 border border-white/5 text-center hover:bg-white/10 transition-colors">
+                  <span className="text-gray-500 text-[10px] uppercase tracking-wider font-bold block mb-1">Prize Pool</span>
+                  <span className="text-white font-bold text-sm tracking-wide">₹ {selectedEvent.prizes}*</span>
                 </div>
               </div>
 
-              <h2 className="text-[#ff2b2b] text-[10px] uppercase tracking-[0.3em] font-black mb-2 animate-pulse">Lucky Roll</h2>
-
-              <h3 className="text-white text-xl md:text-2xl mb-4 uppercase tracking-tight leading-tight px-2"
-                style={{
-                  fontFamily: "'Orbitron', sans-serif",
-                  fontWeight: 900,
-                  textShadow: '0 0 20px rgba(255,0,0,0.8), 0 0 40px rgba(255,0,0,0.4)'
-                }}>
-                {selectedEvent.title}
-              </h3>
-
-              <div className="grid grid-cols-2 gap-3 mb-4 text-left">
-                <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                  <span className="text-gray-500 text-[9px] uppercase tracking-[0.15em] font-bold block mb-1">Category</span>
-                  <span className="text-[#ff2b2b] font-black uppercase text-xs tracking-wider">{categoryNames[category] || category}</span>
-                </div>
-                <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                  <span className="text-gray-500 text-[9px] uppercase tracking-[0.15em] font-bold block mb-1">Prize Pool</span>
-                  <span className="text-white font-black text-xs tracking-wider">₹ {selectedEvent.prizes}*</span>
-                </div>
-              </div>
-
-              <div className="bg-red-950/20 border border-[#ff2b2b]/20 rounded-xl p-4 mb-3 relative overflow-hidden">
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed italic relative z-10">
-                  "{selectedEvent.description}"
+              {/* Description - Clean & Readable */}
+              <div className="bg-black/40 border border-white/5 rounded-xl p-5 mb-2 relative">
+                <p className="text-gray-300 text-sm leading-relaxed font-light">
+                  {selectedEvent.description}
                 </p>
               </div>
             </div>
 
-            <div className="p-4 md:p-5 bg-black/60 border-t border-white/10 text-center flex-shrink-0">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={handleViewDetails}
-                  className="flex-[2] relative overflow-hidden bg-[#ff1a1a] text-white font-black uppercase tracking-[0.12em] py-3 px-6 rounded-lg transition-all duration-300 transform group/btn active:scale-95 shadow-[0_0_30px_rgba(255,0,0,0.3)] energy-charge text-xs"
-                >
-                  <span className="relative z-10">View Details</span>
-                </button>
-                <button
-                  onClick={() => setShowResult(false)}
-                  className="flex-1 bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white font-bold uppercase tracking-[0.08em] py-3 px-6 rounded-lg transition-all duration-300 border border-white/10 text-xs"
-                >
-                  Close
-                </button>
-              </div>
+            {/* Footer Actions */}
+            <div className="p-5 bg-white/5 border-t border-white/5 flex gap-3">
+              <button
+                onClick={handleViewDetails}
+                className="flex-1 bg-st-red hover:bg-red-600 text-white font-bold uppercase tracking-widest text-xs py-3.5 px-6 rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(255,0,0,0.3)] hover:shadow-[0_0_30px_rgba(255,0,0,0.5)] transform active:scale-[0.98]"
+              >
+                View Event
+              </button>
+              <button
+                onClick={() => setShowResult(false)}
+                className="px-6 py-3.5 bg-transparent hover:bg-white/10 text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs rounded-lg border border-white/10 transition-all duration-300"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>

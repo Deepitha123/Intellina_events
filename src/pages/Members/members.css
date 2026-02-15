@@ -628,23 +628,26 @@ body.upside-down-active .members-container::before {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .members-grid {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 cols on tablets */
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
     .members-container {
-        padding: 2rem 1rem;
+        padding: 5rem 1rem 2rem;
+        /* Adjusted top padding for navbar */
     }
 
     .members-grid {
+        display: grid;
         grid-template-columns: 1fr;
         /* 1 col on mobile */
     }
 
     .members-grid.two-col {
+        display: grid;
         grid-template-columns: 1fr;
     }
 
