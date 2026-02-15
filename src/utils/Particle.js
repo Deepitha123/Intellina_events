@@ -18,7 +18,7 @@ export function initParticles(container) {
   updateSize();
 
   const config = {
-    particleCount: 200,
+    particleCount: 60,
     particleColor: '#ffffff',
     particleSize: 3,
     particleOpacity: 0.5,

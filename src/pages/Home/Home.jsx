@@ -5,7 +5,7 @@ import { TornPaperEffect } from '../../utils/TornPaperEffect';
 import { initParticles } from '../../utils/Particle';
 import { FuzzyText } from '../../utils/FuzzyText';
 import { Countdown } from '../../utils/Countdown';
-import { ParticleRing } from '../../utils/ParticleRing';
+
 import bgLights from '../../assets/images/home/bg-lights.png';
 import './Home.css';
 
@@ -15,7 +15,7 @@ const Home = () => {
     const fuzzyTitleRef = useRef(null);
     const fuzzySubtitleRef = useRef(null);
     const countdownRef = useRef(null);
-    const heroRingRef = useRef(null);
+
     const heroCountdownRef = useRef(null);
     // const bentoRef = useRef(null); // Commented out in original
 
@@ -33,7 +33,7 @@ const Home = () => {
         if (fuzzySubtitleRef.current) fuzzySubtitleRef.current.innerHTML = '';
         if (tornPaperRef.current) tornPaperRef.current.innerHTML = '';
         if (countdownRef.current) countdownRef.current.innerHTML = '';
-        if (heroRingRef.current) heroRingRef.current.innerHTML = '';
+
         if (heroCountdownRef.current) heroCountdownRef.current.innerHTML = '';
 
         // 0. Initialize Particles Background
@@ -51,7 +51,8 @@ const Home = () => {
                 glitchMode: true,
                 fuzzRange: 15,
                 baseIntensity: 0.1,
-                hoverIntensity: 0.4
+                hoverIntensity: 0.4,
+                fps: 30
             });
         }
 
@@ -65,7 +66,8 @@ const Home = () => {
                 fuzzRange: 20,
                 baseIntensity: 0.2,
                 hoverIntensity: 0.6,
-                className: 'transform -rotate-2 font-mono'
+                className: 'transform -rotate-2 font-mono',
+                fps: 30
             });
         }
 
@@ -84,17 +86,7 @@ const Home = () => {
             countdown = new Countdown(countdownRef.current, '2026-03-06T09:30:00');
         }
 
-        // 3. Initialize Hero Section Enhancements (Particle Ring + Small Countdown)
-        if (heroRingRef.current) {
-            heroRing = new ParticleRing(heroRingRef.current, {
-                particleCount: 2000,
-                minRadius: 100,
-                maxRadius: 250,
-                depth: 100,
-                leftColor: [255, 0, 51], // Red
-                rightColor: [100, 0, 0]  // Dark Red
-            });
-        }
+
 
         if (heroCountdownRef.current) {
             heroCountdown = new Countdown(heroCountdownRef.current, '2026-03-06T09:30:00');
@@ -107,14 +99,14 @@ const Home = () => {
             if (fuzzySubtitle) fuzzySubtitle.destroy();
             if (tornPaper) tornPaper.destroy();
             if (countdown) countdown.stop();
-            if (heroRing) heroRing.destroy();
+
 
             // Final safety clear of InnerHTML
             if (fuzzyTitleRef.current) fuzzyTitleRef.current.innerHTML = '';
             if (fuzzySubtitleRef.current) fuzzySubtitleRef.current.innerHTML = '';
             if (tornPaperRef.current) tornPaperRef.current.innerHTML = '';
             if (countdownRef.current) countdownRef.current.innerHTML = '';
-            if (heroRingRef.current) heroRingRef.current.innerHTML = '';
+
         };
     }, []);
 
@@ -266,8 +258,7 @@ const Home = () => {
                     {/* Right Column: Hero Visual */}
                     <div className="w-full lg:w-[45%] flex justify-center lg:justify-end animate-slide-up opacity-0 pointer-events-auto" style={{ animationFillMode: 'forwards', animationDelay: '0.4s' }}>
                         <div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
-                            {/* Particle Ring Background moved/removed or kept for robot? User said "below robot". I'll keep the rings around robot. */}
-                            <div ref={heroRingRef} className="absolute inset-0 z-0 pointer-events-none"></div>
+
 
                             {/* Holographic Rings */}
                             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border-2 border-st-red/15 rounded-full animate-spin-slow pointer-events-none" style={{ boxShadow: '0 0 40px rgba(255,0,51,0.2)' }}></div>
@@ -278,7 +269,7 @@ const Home = () => {
                                     <span>Hi! Do register for<br />Intellina</span>
                                 </div>
                                 <div className="st-robot-wrapper w-full h-full relative">
-                                    <iframe src='https://my.spline.design/genkubgreetingrobot-fzWnKIUrSKa0RwHGiBYduZeq/' frameBorder='0' width='100%' height='100%'></iframe>
+                                    <iframe src='https://my.spline.design/genkubgreetingrobot-fzWnKIUrSKa0RwHGiBYduZeq/' frameBorder='0' width='100%' height='100%' loading="lazy" title="Interactive Robot"></iframe>
                                     {/* Spline Watermark Hider Overlay */}
                                     <div className="absolute bottom-0 right-0 w-48 h-16 bg-black z-50 pointer-events-none"></div>
                                     <div className="absolute bottom-0 right-0 w-32 h-10 bg-black z-50 pointer-events-none translate-x-4 translate-y-4"></div>
